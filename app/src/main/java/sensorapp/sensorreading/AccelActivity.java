@@ -23,7 +23,7 @@ public class AccelActivity extends BaseActivity {
             float value_x = event.values[0];
             float value_y = event.values[1];
             float value_z = event.values[2];
-            accelLevel.setText("X:" + value_x + "m/s^2; y:" + value_y + "m/s^2; z:" + value_z + "m/s^2");
+            accelLevel.setText("X:" + value_x + "m/s^2.\n y:" + value_y + "m/s^2.\n z:" + value_z + "m/s^2.\n");
         }
 
         @Override

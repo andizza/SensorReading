@@ -28,6 +28,10 @@
             android:name=".AccelActivity"
             android:label="@string/title_activity_accel" >
         </activity>
+        <activity
+            android:name=".PressureActivity"
+            android:label="@string/title_activity_pressure" >
+        </activity>
     </application>
 
 </manifest>

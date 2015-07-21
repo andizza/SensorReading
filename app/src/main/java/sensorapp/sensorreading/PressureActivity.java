@@ -10,23 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-//import android.support.v7.app.ActionBarActivity;
 
 
-public class LightActivity extends BaseActivity {
+public class PressureActivity extends BaseActivity {
 
     private SensorManager sensorManager;
-    private TextView lightLevel;
-    private ProgressBar progressBar;
+    private TextView pressLevel;
     private SensorEventListener listener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
             float value = event.values[0];
-            lightLevel.setText("Current light level is" + value + "lx.\n");
-            progressBar.setProgress((int)value);
+            pressLevel.setText("Current pressure is " + value + " hPa.\n");
         }
 
         @Override
@@ -38,14 +33,13 @@ public class LightActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_light);
-        lightLevel = (TextView) findViewById(R.id.light_level);
+        setContentView(R.layout.activity_pressure);
+        pressLevel = (TextView) findViewById(R.id.press_level);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
         sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        Button button = (Button) findViewById(R.id.button_light_return);
+        Button button = (Button) findViewById(R.id.button_press_return);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +59,7 @@ public class LightActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_light, menu);
+        getMenuInflater().inflate(R.menu.menu_pressure, menu);
         return true;
     }
 
@@ -77,18 +71,10 @@ public class LightActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        switch (id) {
-            case R.id.action_lower_frequency:
-                //TODO: lower frequency
-                Toast.makeText(this, "You want lower refresh frequency", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.action_higher_frequency:
-                //TODO: higher frequency
-                Toast.makeText(this, "You want higher refresh frequency", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-            //return true;
+        if (id == R.id.action_settings) {
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

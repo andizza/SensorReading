@@ -56,6 +56,19 @@ public class MainActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
                         break;
+
+                    case "Pressure Sensor":
+                        //Call Pressure Sensor
+                        if(sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE) != null) {
+                            intent = new Intent(MainActivity.this, PressureActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, string + " does not exist.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
                     default:
                         Toast.makeText(MainActivity.this, "You pressed "+string+".",
                                 Toast.LENGTH_SHORT).show();
